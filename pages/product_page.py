@@ -28,3 +28,11 @@ class ProductPage(BasePage):
         assert self.browser.find_element(
             *ProductPageLocators.BASKET_TOTAL_ALERT_TOTAL_VALUE).text == self.browser.find_element(
             *ProductPageLocators.PRODUCT_PRICE).text, "Product price mismatch"
+
+    def should_not_notify_product_added(self):
+        assert self.is_not_element_present(
+            *ProductPageLocators.ADDED_SUCCESSFULLY_ALERT_PRODUCT_TITLE), "Notified of added product while souldn't"
+
+    def should_remove_notification_product_added(self):
+        assert self.is_disappeared(
+            *ProductPageLocators.ADDED_SUCCESSFULLY_ALERT_PRODUCT_TITLE), "added product notification was not removed"
